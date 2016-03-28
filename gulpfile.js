@@ -1,5 +1,6 @@
 var gulp = require('gulp');	//gulp
 var sass = require('gulp-ruby-sass');		//scss -> css
+var ejs = require('gulp-ejs');	//watch dont stop
 var plumber = require('gulp-plumber');	//watch dont stop
 var browserSync = require('browser-sync');  //browser live reload
 
@@ -8,6 +9,13 @@ gulp.task('copy', function() {
   gulp.src('src/**/*.html', { base: 'src'}).pipe( gulp.dest('dist') );
   gulp.src('src/**/*.js', { base: 'src'}).pipe( gulp.dest('dist') );
   gulp.src(['src/**/*.png','src/**/*.jpg'], { base: 'src'}).pipe( gulp.dest('dist') );
+});
+
+//ejs
+gulp.task('ejs', function(){
+  gulp.src(['src/**/*.ejs',  '!src/**/_*.ejs'])
+    .pipe( ejs({}, {ext: '.html'}) )
+    .pipe( gulp.dest('dist') );
 });
 
 //scss -> css
@@ -19,7 +27,9 @@ gulp.task('sass', function() {
 
 //watching files
 gulp.task('watch', function() {
-  gulp.watch(['src/**/*.html','src/**/*.js'], ['copy']);
+  //gulp.watch(['src/**/*.html','src/**/*.js'], ['copy']);
+  gulp.watch('src/**/*.js', ['copy']);
+  gulp.watch(['src/**/*.ejs',  '!src/**/_*.ejs'], ['ejs']);
   gulp.watch('src/**/*.scss', ['sass']);
   //reload
   gulp.watch('dist/**/*', ['bs-reload']);
@@ -43,4 +53,4 @@ gulp.task('webserver', function() {
   })
 });
 
-gulp.task('default', ['copy', 'sass', 'watch', 'webserver']);
+gulp.task('default', ['copy', 'sass', 'watch', 'ejs', 'webserver']);
