@@ -1,2 +1,22 @@
 @charset "utf-8";
+//import reset.css
+@import "reset";
+/*
+[media query patternA]
+mobile : 0 - 599px
+tablet : none
+pc : 600px - 1280px
 
+[media query patternB]
+mobile : 0 - 599px
+tablet : 600px - 959px
+pc : 960px - 1280px
+*/
+
+
+//start smartphone style
+//end smartphone style
+
+
+@media all and (min-width: 600px) {
+}/* end pc style*/
