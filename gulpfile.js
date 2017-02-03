@@ -52,13 +52,14 @@ gulp.task('bs-reload', function(){
 
 //webserver display(browserSync)
 gulp.task('webserver', function(){
-	return browserSync.init({
-	notify: false,
-	port: 8000,
-    server: {
-      baseDir: './dist/'
-    }
-  })
+	browserSync({
+		notify: false,
+		port: 8000,
+		server: {
+			baseDir: './dist',       //対象ディレクトリ
+			index  : 'index.html'      //インデックスファイル
+		}
+	});
 });
 
 gulp.task('default', ['copy', 'ejs', 'sass', 'watch', 'webserver']);
