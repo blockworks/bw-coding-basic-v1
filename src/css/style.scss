@@ -1,6 +1,16 @@
 @charset "utf-8";
+
 //import reset.css
 @import "reset";
+
+/** var **/
+/*
+$baseColor: #fff;
+@mixin hoge($color:#666) {
+  border-bottom: 1px solid $color;
+}
+*/
+
 /*
 [media query patternA]
 mobile : 0 - 599px
